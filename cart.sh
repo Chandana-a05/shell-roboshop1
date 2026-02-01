@@ -34,16 +34,22 @@ dnf module enable nodejs:20 -y
 dnf install nodejs -y
 VALIDATE $? "Installing nodejs 20"
 
+id roboshop &>>LOGS_FILE
+if [ $? -ne 0]; then 
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+    VALIDATE $? "User added"
+else
+    echo -e "user already exist....$Y SKIPPING $N"
+fi 
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-VALIDATE $? "User added"
+mkdir -p /app 
+VALIDATE $? "Creating app directory"
 
-mkdir /app 
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>>$LOGS_FILE
-VALIDATE $? "Downloading Cart code"
+VALIDATE $? "Downloading Cart application"
 
 cd /app 
-VALIDATE $? "Moving to app directory
+VALIDATE $? "changing to app directory"
 
 rm -rf /app/*
 VALIDATE $? "Removing existing code"
@@ -53,6 +59,9 @@ VALIDATE $? "Unzip Cart code"
 
 npm install &>>$LOGS_FILE
 VALIDATE $? "Installing dependencies"
+
+cp $SCRIPT_DIR/cart.service /etc/systemd/system/cart.service
+VALIDATE $? "Copy systemctl service"
 
 systemctl daemon-reload
 systemctl enable cart 
