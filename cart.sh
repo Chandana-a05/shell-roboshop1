@@ -65,7 +65,7 @@ VALIDATE $? "Copy systemctl service"
 
 systemctl daemon-reload
 systemctl enable cart 
-systemctl start cart
-VALIDATE $? "Starting Cart"
+systemctl restart cart
+VALIDATE $? "Restarted Cart"
 
 
