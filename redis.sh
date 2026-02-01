@@ -9,6 +9,8 @@ B="\e[34m"
 N="\e[0m" #Normal
 SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.devopspro.online
+START_TIME=$(date +%s)
+SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 
 if [ $USERID -ne 0 ]; then
     echo -e "$R please run this script with root user access $N" | tee -a $LOGS_FILE
@@ -34,7 +36,7 @@ dnf install redis -y
 VALIDATE $? "Installing Redis"
 
 sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
-VALIDATE $? "Allowing remote connections to Redis"
+VALIDATE $? "Allowing Remote connections to Redis"
 
 systemctl enable redis 
 systemctl start redis 
