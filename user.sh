@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop1"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 R="\e[31m"
@@ -22,10 +22,10 @@ echo "Script start executed at : $(date)" | tee -a $LOGS_FILE
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo "$2 ......FAILURE" | tee -a $LOGS_FILE
-        exit1
+        echo -e "$2 ... $R FAILURE $N" | tee -a $LOGS_FILE
+        exit 1
     else
-         echo "$2..... SUCCESS" | tee -a $LOGS_FILE
+        echo -e "$2 ... $G SUCCESS $N" | tee -a $LOGS_FILE
     fi
 }
 

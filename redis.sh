@@ -1,4 +1,5 @@
 #!/bin/bsh
+
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop1"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
