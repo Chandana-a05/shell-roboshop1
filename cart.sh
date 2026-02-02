@@ -22,7 +22,7 @@ echo "Script start executed at : $(date)" | tee -a $LOGS_FILE
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo -e "$2 ......$R FAILURE $N" | tee -a $LOGS_FILE
+        echo "$2 ......$R FAILURE $N" | tee -a $LOGS_FILE
         exit1
     else
          echo "$2..... $G SUCCESS $N" | tee -a $LOGS_FILE
