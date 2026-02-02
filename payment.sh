@@ -76,16 +76,3 @@ VALIDATE $? "Enabled and Started Payment"
 
 
 
-
-
-
-
-npm install 
-
-
-
-
-systemctl daemon-reload
-systemctl enable user 
-systemctl start user
-VALIDATE $? "Starting user"
