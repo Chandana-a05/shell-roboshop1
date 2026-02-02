@@ -22,10 +22,10 @@ echo "Script start executed at : $(date)" | tee -a $LOGS_FILE
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo "$2 ......$R FAILURE $N" | tee -a $LOGS_FILE
+        echo -e "$2 ...$R FAILURE $N" | tee -a $LOGS_FILE
         exit1
     else
-         echo "$2..... $G SUCCESS $N" | tee -a $LOGS_FILE
+         echo -e "$2 ... $G SUCCESS $N" | tee -a $LOGS_FILE
     fi
 }
 
@@ -39,7 +39,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>LOGS_FILE
     VALIDATE $? "User added"
 else
-    echo -e "user already exist....$Y SKIPPING $N"
+    echo -e "user already exist...$Y SKIPPING $N"
 fi 
 
 mkdir -p /app 
