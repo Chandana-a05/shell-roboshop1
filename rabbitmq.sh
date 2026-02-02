@@ -31,7 +31,7 @@ VALIDATE(){
     fi
 }
 
-cp $SCRIPT_DIR/rebbitmq.repo /etc/yum.repos.d/rabbitmq.repo
+cp $SCRIPT_DIR/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 VALIDATE $? "Copy systemctl service"
 
 dnf install rabbitmq-server -y &>>LOGS_FILE
