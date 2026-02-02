@@ -64,10 +64,6 @@ VALIDATE $? "Moving and Renaming shipping"
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
 VALIDATE $? "Copy systemctl service"
 
-npm install &>>$LOGS_FILE
-VALIDATE $? "Installing dependencies"
-
-
 dnf install mysql -y 
 VALIDATE $? "Installing Mysql"
 
