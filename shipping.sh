@@ -28,7 +28,7 @@ VALIDATE(){
     fi
 }
 
-dnf install maven -y
+dnf install maven -y &>>LOGS_FILE
 VALIDATE $? "Installing Maven"
 
 id roboshop &>>LOGS_FILE
@@ -51,7 +51,7 @@ VALIDATE $? "changing to app directory"
 rm -rf /app/*
 VALIDATE $? "Removing existing code"
 
-unzip /tmp/shipping.zip
+unzip /tmp/shipping.zip &>>$LOGS_FILE
 VALIDATE $? "Unzip User code"
 
 cd /app 
@@ -64,7 +64,7 @@ VALIDATE $? "Moving and Renaming shipping"
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
 VALIDATE $? "Copy systemctl service"
 
-dnf install mysql -y 
+dnf install mysql -y &>>LOGS_FILE
 VALIDATE $? "Installing Mysql"
 
 
